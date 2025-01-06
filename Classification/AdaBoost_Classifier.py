@@ -22,7 +22,6 @@ class DecisionStump:
 
         return predictions
 
-
 class Adaboost_Classifier():
 
     # parameter initialization 
@@ -92,5 +91,5 @@ class Adaboost_Classifier():
 
         return y_pred
     
-    # Source: adaboost code of patrickloeber. No Adaptations
-    # Check: https://github.com/patrickloeber/MLfromscratch/blob/master/mlfromscratch/adaboost.py
+# Source: adaboost code of patrickloeber. No Adaptations
+# Check: https://github.com/patrickloeber/MLfromscratch/blob/master/mlfromscratch/adaboost.py

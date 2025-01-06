@@ -130,8 +130,6 @@ class Decision_Tree_Regressor:
     def _leaf_value(self, y):
         return np.mean(y)
 
-
-
 # Adapted from Decision Tree code of janaSunrise/patrickloeber and SebastianMantey.
 # Check: https://github.com/patrickloeber/MLfromscratch/blob/master/mlfromscratch/decision_tree.py
 # Check: https://github.com/SebastianMantey/Decision-Tree-from-Scratch/blob/master/notebooks/decision_tree_functions.py

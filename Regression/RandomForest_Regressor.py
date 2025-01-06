@@ -1,6 +1,6 @@
-from collections import Counter
 import numpy as np
 from DecTree_Regressor import Decision_Tree_Regressor
+from collections import Counter
 
 class Random_Forest_Regressor:
     
@@ -34,12 +34,9 @@ class Random_Forest_Regressor:
     
     # create a bootstrap sample of the dataset randomly with replacement
     def bootstrap_sample(self, X, y):
-        X = np.array(X) 
-        y = np.array(y) 
-
         n_samples = X.shape[0]
         idxs = np.random.choice(n_samples, n_samples, replace=True) 
         return X[idxs], y[idxs] 
     
-    # Adapted from Random Forest code of patrickloeber.
-    # Check: https://github.com/patrickloeber/MLfromscratch/blob/master/mlfromscratch/random_forest.py
+# Modified from Random Forest code of patrickloeber.
+# Check: https://github.com/patrickloeber/MLfromscratch/blob/master/mlfromscratch/random_forest.py

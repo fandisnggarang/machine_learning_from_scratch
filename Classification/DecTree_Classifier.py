@@ -1,4 +1,3 @@
-
 import numpy as np
 import pandas as pd
 
@@ -39,9 +38,6 @@ class Decision_Tree_Classifier:
 
     # fitting process
     def fit(self, X, y):
-        X = X.values if isinstance(X, pd.DataFrame) else X
-        y = y.values if isinstance(y, pd.Series) else y 
-        
         self.n_feats = X.shape[1] if not self.n_feats else min(self.n_feats, X.shape[1])
         self.root = self._grow_tree(X, y)
 
@@ -163,8 +159,6 @@ class Decision_Tree_Classifier:
 
         return leaf
     
-  
-
 # Modified from code of janaSunrise/patrickloeber and SebastianMantey.
 # Check: https://github.com/patrickloeber/MLfromscratch/blob/master/mlfromscratch/decision_tree.py
 # Check: https://github.com/SebastianMantey/Decision-Tree-from-Scratch/blob/master/notebooks/decision_tree_functions.py

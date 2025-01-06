@@ -1,5 +1,5 @@
-from collections import Counter
 import numpy as np
+from collections import Counter
 
 class KNearest_Neighbor_Classifier():
 

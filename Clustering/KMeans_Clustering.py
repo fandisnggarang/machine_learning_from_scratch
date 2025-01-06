@@ -35,6 +35,7 @@ class KMeans_Clustering():
         dot_output = np.sum(x1 * x2)
         norm_x1    = np.sqrt(np.sum(x1 ** 2))
         norm_x2    = np.sqrt(np.sum(x2 ** 2))
+
         return 1 - (dot_output / (norm_x1 * norm_x2))
 
     # prediction process
@@ -79,6 +80,7 @@ class KMeans_Clustering():
         for idx, sample in enumerate(self.X): 
             centroid_idx = self.closest_centroid(sample, centroids)
             clusters[centroid_idx].append(idx)
+
         return clusters
 
     # determine closest centroid to a sample
@@ -90,6 +92,7 @@ class KMeans_Clustering():
         elif self.distance_measurement == 'cosine':
             distances   = [self.cosine_distance(sample, point) for point in centroids]
         closest_centroid_idx = np.argmin(distances) 
+
         return closest_centroid_idx
 
     # update centroid by calculating the mean of the points in each cluster
@@ -100,6 +103,7 @@ class KMeans_Clustering():
                 centroids[idx] = self.centroids[idx]
             else: 
                 centroids[idx] = np.mean(self.X[cluster], axis = 0)
+
         return centroids 
     
     # check if centroids have converged
@@ -112,6 +116,7 @@ class KMeans_Clustering():
                 total_distance += self.manhattan_distance(old_centroids[i], centroids[i])
             elif self.distance_measurement == 'cosine':
                 total_distance += self.cosine_distance(old_centroids[i], centroids[i])
+
         return total_distance < self.tol
     
     # assign labels to each data point
@@ -119,7 +124,8 @@ class KMeans_Clustering():
         self.labels = np.empty(self.n_samples)
         for cluster_idx, cluster in enumerate(clusters): 
             for idx in cluster: 
-                self.labels[idx] = cluster_idx 
+                self.labels[idx] = cluster_idx
+                 
         return self.labels       
     
     # plot the clustering result. But it is only for 2D data! 
@@ -137,7 +143,6 @@ class KMeans_Clustering():
             ax.scatter(*point, marker="x", color="black", linewidth=2)
 
         plt.show()
-
 
 # Modified from Patric Loeber's code. 
 # Check: https://github.com/AssemblyAI-Community/Machine-Learning-From-Scratch/blob/main/10%20KMeans/kmeans.py

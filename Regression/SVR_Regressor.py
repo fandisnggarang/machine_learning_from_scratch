@@ -55,7 +55,6 @@ class SVr_():
     def predict(self, X): 
         y_hat      = np.dot(X, self.w) + self.b
         return y_hat 
-    
 
 # Adapted from Siddhardhan's SVM Classifier code.
 # Check: https://www.youtube.com/watch?v=pCQQaeC9WRE&list=PLfFghEzKVmjvzS4DILijsdQk27Ew7xIPu

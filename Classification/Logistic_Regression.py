@@ -44,7 +44,7 @@ class Logistic_Regression():
         Y_pred = [1 if i > 0.5 else 0 for i in Y_pred]
         return Y_pred
     
-    # Modified from Siddhardhan's code.
-    # Check: https://www.youtube.com/watch?v=DeUAvYyB0Os&list=PLfFghEzKVmjsF8ixJ-xKVuQayPWRH4Sp6&index=6
+# Modified from Siddhardhan's code.
+# Check: https://www.youtube.com/watch?v=DeUAvYyB0Os&list=PLfFghEzKVmjsF8ixJ-xKVuQayPWRH4Sp6&index=6
 
             

@@ -1,7 +1,6 @@
+import numpy as np
 from collections import Counter
 from DecTree_Classifier import Decision_Tree_Classifier
-
-import numpy as np
 
 class Random_Forest_Classifier:
 
@@ -50,5 +49,5 @@ class Random_Forest_Classifier:
         return uniqe_classes[index]
     
     
-    # Modified from Random Forest code of patrickloeber.
-    # Check: https://github.com/patrickloeber/MLfromscratch/blob/master/mlfromscratch/random_forest.py
+# Modified from Random Forest code of patrickloeber.
+# Check: https://github.com/patrickloeber/MLfromscratch/blob/master/mlfromscratch/random_forest.py

@@ -118,8 +118,8 @@ class Adaboost_Regressor:
         
         return y_pred
     
-    # Adapted from adaboost code of patrickloeber.
-    # Check: https://github.com/patrickloeber/MLfromscratch/blob/master/mlfromscratch/adaboost.py
+# Adapted from adaboost code of patrickloeber.
+# Check: https://github.com/patrickloeber/MLfromscratch/blob/master/mlfromscratch/adaboost.py
 
 
 

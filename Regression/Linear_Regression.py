@@ -34,6 +34,5 @@ class linear_regression:
 
         return y_pred
     
-
 # Adapted from Siddhardhan's Logistic Regression code.
 # Check: https://www.youtube.com/watch?v=DeUAvYyB0Os&list=PLfFghEzKVmjsF8ixJ-xKVuQayPWRH4Sp6&index=6
