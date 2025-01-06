@@ -48,6 +48,5 @@ class Random_Forest_Classifier:
         index = counts_unique_classes.argmax() 
         return uniqe_classes[index]
     
-    
 # Modified from Random Forest code of patrickloeber.
 # Check: https://github.com/patrickloeber/MLfromscratch/blob/master/mlfromscratch/random_forest.py
