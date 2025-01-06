@@ -26,7 +26,6 @@ class Node:
     def is_leaf_node(self):
         return self.value is not None
 
-
 class Decision_Tree_Classifier:
 
     # parameter initialization
@@ -123,10 +122,8 @@ class Decision_Tree_Classifier:
         elif feature_type == 'categorical':
             left_idxs  = np.argwhere(X_column == split_thresh).flatten()
             right_idxs = np.argwhere(X_column != split_thresh).flatten()
-
         else: 
             raise ValueError(f'Unknown feature type: {feature_type}') 
-
         return left_idxs, right_idxs
     
     # find out whether a column is numerical or categorical
@@ -140,12 +137,11 @@ class Decision_Tree_Classifier:
     def _traverse_tree(self, x, node):
         if node.is_leaf_node():
             return node.value
-        
+            
         if node.feature_type == 'categorical':
             if x[node.feature] == node.threshold: 
                 return self._traverse_tree(x, node.left)
             return self._traverse_tree(x, node.right)
-
         else: 
             if x[node.feature] <= node.threshold:
                 return self._traverse_tree(x, node.left)
@@ -156,7 +152,6 @@ class Decision_Tree_Classifier:
         unique_classes, counts_unique_classes = np.unique(y, return_counts=True)
         index = counts_unique_classes.argmax() 
         leaf  = unique_classes[index]
-
         return leaf
     
 # Modified from code of janaSunrise/patrickloeber and SebastianMantey.
