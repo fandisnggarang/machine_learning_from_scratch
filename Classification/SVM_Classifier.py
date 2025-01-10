@@ -28,6 +28,10 @@ class SVM_Classifier():
             else: 
                 dw = grad_L2_reg - np.dot(x, self.label[idx])
                 db = self.label[idx]
+<<<<<<< HEAD
+=======
+                
+>>>>>>> ca5f885cf0bf6810a927e81f4931aca7fe30788d
             self.w -= self.learning_rate * dw 
             self.b -= self.learning_rate * db 
     

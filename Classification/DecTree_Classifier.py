@@ -25,7 +25,6 @@ class Node:
     def is_leaf_node(self):
         return self.value is not None
 
-
 class Decision_Tree_Classifier:
     # parameter initialization
     def __init__(self, min_samples_split=2, max_depth=100, n_feats=None):
@@ -134,7 +133,7 @@ class Decision_Tree_Classifier:
     def _traverse_tree(self, x, node):
         if node.is_leaf_node():
             return node.value
-        
+            
         if node.feature_type == 'categorical':
             if x[node.feature] == node.threshold: 
                 return self._traverse_tree(x, node.left)
