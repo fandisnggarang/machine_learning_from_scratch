@@ -10,7 +10,6 @@ def entropy(y):
 
 # Make tree nodes
 class Node:
-
     # parameter initialization
     def __init__(
         self, feature=None, threshold=None, left=None, right=None, *, value=None, feature_type=None
@@ -28,7 +27,6 @@ class Node:
 
 
 class Decision_Tree_Classifier:
-
     # parameter initialization
     def __init__(self, min_samples_split=2, max_depth=100, n_feats=None):
         self.min_samples_split = min_samples_split
@@ -102,7 +100,7 @@ class Decision_Tree_Classifier:
 
         # generate split
         left_idxs, right_idxs = self._split(X_column, split_thresh, feature_type)
-
+        
         if len(left_idxs) == 0 or len(right_idxs) == 0:
             return 0
 
@@ -110,7 +108,6 @@ class Decision_Tree_Classifier:
         proba_left, proba_right     = len(left_idxs)/len(y), len(right_idxs)/len(y)
         entropy_left, entropy_right = entropy(y[left_idxs]), entropy(y[right_idxs])
         child_entropy = proba_left * entropy_left + proba_right * entropy_right
-
         # information gain is difference in loss before vs. after split
         return parent_entropy - child_entropy
     
@@ -119,14 +116,11 @@ class Decision_Tree_Classifier:
         if feature_type == 'continuous':
             left_idxs  = np.argwhere(X_column <= split_thresh).flatten()
             right_idxs = np.argwhere(X_column > split_thresh).flatten()
-
         elif feature_type == 'categorical':
             left_idxs  = np.argwhere(X_column == split_thresh).flatten()
             right_idxs = np.argwhere(X_column != split_thresh).flatten()
-
         else: 
             raise ValueError(f'Unknown feature type: {feature_type}') 
-
         return left_idxs, right_idxs
     
     # find out whether a column is numerical or categorical
@@ -145,7 +139,6 @@ class Decision_Tree_Classifier:
             if x[node.feature] == node.threshold: 
                 return self._traverse_tree(x, node.left)
             return self._traverse_tree(x, node.right)
-
         else: 
             if x[node.feature] <= node.threshold:
                 return self._traverse_tree(x, node.left)
@@ -156,7 +149,6 @@ class Decision_Tree_Classifier:
         unique_classes, counts_unique_classes = np.unique(y, return_counts=True)
         index = counts_unique_classes.argmax() 
         leaf  = unique_classes[index]
-
         return leaf
     
 # Modified from code of janaSunrise/patrickloeber and SebastianMantey.

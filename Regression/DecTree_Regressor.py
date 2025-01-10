@@ -11,7 +11,6 @@ def mse(y):
 
 # Make tree nodes
 class Node:
-
     # parameter initialization
     def __init__(
         self, feature=None, threshold=None, left=None, right=None, *, value=None
@@ -27,7 +26,6 @@ class Node:
         return self.value is not None
 
 class Decision_Tree_Regressor:
-
     # parameter initialization
     def __init__(self, min_samples_split=2, max_depth=100, n_feats=None):
         self.min_samples_split = min_samples_split
@@ -37,8 +35,8 @@ class Decision_Tree_Regressor:
 
     # fitting process
     def fit(self, X, y):
-        self.n_feats = X.shape[1] if not self.n_feats else min(self.n_feats, X.shape[1])
-        self.root = self._grow_tree(X, y)
+        self.n_feats= X.shape[1] if not self.n_feats else min(self.n_feats, X.shape[1])
+        self.root   = self._grow_tree(X, y)
 
     # prediction process
     def predict(self, X):
@@ -75,15 +73,15 @@ class Decision_Tree_Regressor:
         best_gain = -1
         split_idx, split_thresh = None, None
         for feat_idx in feat_idxs:
-            X_column = X[:, feat_idx]
+            X_column   = X[:, feat_idx]
             thresholds = np.unique(X_column)
             for threshold in thresholds:
                 gain = self._information_gain(y, X_column, threshold)
 
                 if gain > best_gain:
-                    best_gain = gain
-                    split_idx = feat_idx
-                    split_thresh = threshold
+                    best_gain   = gain
+                    split_idx   = feat_idx
+                    split_thresh= threshold
         return split_idx, split_thresh
     
     # calculate information gain for a given split

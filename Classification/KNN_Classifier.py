@@ -2,7 +2,6 @@ import numpy as np
 from collections import Counter
 
 class KNearest_Neighbor_Classifier():
-
     # parameter initialization
     def __init__(self, k_value, distance_metric):
         self.k_value = k_value
@@ -30,7 +29,6 @@ class KNearest_Neighbor_Classifier():
             distance_data.append((train_point, label, distance))
         distance_data.sort(key=lambda x:x[2])
         k_nearest_neighbors = distance_data[:self.k_value]
-        
         return k_nearest_neighbors
 
     # assign predicted label
@@ -40,7 +38,6 @@ class KNearest_Neighbor_Classifier():
         for data in neighbors: 
             labels.append(data[1])
         majority_label = Counter(labels).most_common(1)[0][0]
-
         return majority_label
     
     # prediction process

@@ -1,7 +1,6 @@
 import numpy as np 
 
 class SVr_(): 
-
     # parameter initialization
     def __init__(self, lambda_param, learning_rate, num_of_iters, epsilon): 
         self.lambda_param  = lambda_param
@@ -22,18 +21,16 @@ class SVr_():
     def update_weight(self):
         for i in range(self.X.shape[0]): 
             margin = (self.hyper_plane(self.X[i])) - self.Y[i]
-            
+        
             # grad_l2_reg = gradien of L2 regularization term
             grad_L2_reg = 2 * self.lambda_param * self.w
 
             if margin > self.epsilon:
                 dw = grad_L2_reg + self.X[i]
                 db = margin - self.epsilon
-
             elif margin < -self.epsilon: 
                 dw = grad_L2_reg - self.X[i]
                 db = margin + self.epsilon
-
             else:
                 dw = grad_L2_reg
                 db = 0
@@ -45,9 +42,7 @@ class SVr_():
     def fit(self, X, y):
         self.X = X
         self.Y = y
-
         self.param_init()
-
         for i in range(self.num_of_iters):
             self.update_weight()
 

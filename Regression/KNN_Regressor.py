@@ -2,7 +2,6 @@ import numpy as np
 from collections import Counter
 
 class KNearest_Neighbors_Regressor():
-
     # parameter initialization
     def __init__(self, k_value, distance_metric, average_metric):
         self.k_value         = k_value
@@ -31,7 +30,6 @@ class KNearest_Neighbors_Regressor():
             distance_data.append((train_point, target_value, distance))
         distance_data.sort(key=lambda x:x[2])
         k_nearest_neighbors = distance_data[:self.k_value]
-        
         return k_nearest_neighbors
 
     # identify distance average using simple or weighted mean

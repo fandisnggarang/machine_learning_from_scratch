@@ -1,7 +1,6 @@
 import numpy as np
 
 class Logistic_Regression():
-
     # parameter initialization
     def __init__(self, learning_rate=0.001, iters_number=1000):
         self.learning_rate = learning_rate
@@ -16,7 +15,6 @@ class Logistic_Regression():
     def fit(self, X, y):
         self.X= X
         self.y= y
-
         self.param_init()
         for i in range(self.iters_number): 
             self.update_param()
@@ -26,7 +24,6 @@ class Logistic_Regression():
         Y_hat= self.sigmoid()
         dw   = (1/self.X.shape[0]) * np.dot(self.X.T, (Y_hat - self.y))
         db   = (1/self.X.shape[0]) * np.sum(Y_hat - self.y)
-
         self.w -= self.learning_rate * dw 
         self.b -= self.learning_rate * db
 

@@ -2,19 +2,18 @@ import numpy as np
 
 # create decision stump with weak model
 class DecisionStump:
-    
     # parameter initialization
     def __init__(self): 
-        self.feature_idx = None 
-        self.threshold = None 
-        self.mean_left = None 
+        self.feature_idx= None 
+        self.threshold  = None 
+        self.mean_left  = None 
         self.mean_right = None 
 
     # prediction process
     def predict(self, X): 
-        n_samples = X.shape[0]
-        X_column  = X[:, self.feature_idx]
-        predictions = np.zeros(n_samples) 
+        n_samples  = X.shape[0]
+        X_column   = X[:, self.feature_idx]
+        predictions= np.zeros(n_samples) 
 
         predictions[X_column < self.threshold]  = self.mean_left
         predictions[X_column >= self.threshold] = self.mean_right
@@ -24,7 +23,6 @@ class DecisionStump:
         return predictions 
 
 class Adaboost_Regressor:
-
     # parameter initialization 
     def __init__(self, n_clf=5): 
         self.n_clf = n_clf 
@@ -38,7 +36,6 @@ class Adaboost_Regressor:
         w = np.full(n_samples, (1 / n_samples))
 
         self.clfs = []
-
         # iterate through weak classifiers (decision stump)
         for _ in range(self.n_clf):
             clf = DecisionStump()
@@ -46,11 +43,9 @@ class Adaboost_Regressor:
 
             # find out the best threshold and feature
             for feature_i in range(n_features):
-                X_column = X[:, feature_i]
-                thresholds = np.unique(X_column)
-
+                X_column  = X[:, feature_i]
+                thresholds= np.unique(X_column)
                 for threshold in thresholds:
-
                     # initialize predictions array filled with zeros 
                     predictions = np.zeros(n_samples)
                     if np.any(X_column < threshold):
@@ -74,12 +69,11 @@ class Adaboost_Regressor:
 
                     # store the best configuration
                     if error < min_error:
-                        clf.feature_idx = feature_i
-                        clf.threshold = threshold
+                        clf.feature_idx= feature_i
+                        clf.threshold  = threshold
                         clf.mean_left  = mean_left
                         clf.mean_right = mean_right
-
-                        min_error = error
+                        min_error      = error
 
             # calculate alpha
             EPS = 1e-10
@@ -110,12 +104,10 @@ class Adaboost_Regressor:
         for clf in self.clfs:
             pred = clf.alpha * clf.predict(X)
             clf_preds.append(pred)
-
         y_pred = np.sum(clf_preds, axis=0)
 
         # handle NaN in final predictions
         y_pred = np.nan_to_num(y_pred, nan=0.0)
-        
         return y_pred
     
 # Adapted from adaboost code of patrickloeber.

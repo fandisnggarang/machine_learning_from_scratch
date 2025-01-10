@@ -3,7 +3,6 @@ from DecTree_Regressor import Decision_Tree_Regressor
 from collections import Counter
 
 class Random_Forest_Regressor:
-    
     # initialize parameter
     def __init__(self, n_trees=10, min_samples_split=2, max_depth=100, n_feats=None):
         self.n_trees = n_trees
@@ -16,15 +15,11 @@ class Random_Forest_Regressor:
     def fit(self, X, y):
         self.trees = []
         for _ in range(self.n_trees):
-            tree = Decision_Tree_Regressor(
-                min_samples_split=self.min_samples_split,
-                max_depth=self.max_depth,
-                n_feats=self.n_feats,
-            )
+            tree = Decision_Tree_Regressor(min_samples_split=self.min_samples_split, max_depth=self.max_depth, n_feats=self.n_feats)
             X_samp, y_samp = self.bootstrap_sample(X, y)
             tree.fit(X_samp, y_samp)
             self.trees.append(tree)
-
+            
     # prediction process
     def predict(self, X):
         tree_preds = np.array([tree.predict(X) for tree in self.trees])

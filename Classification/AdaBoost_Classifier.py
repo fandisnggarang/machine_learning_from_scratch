@@ -2,7 +2,6 @@ import numpy as np
 
 # create decision stump with weak model
 class DecisionStump:
-
     # parameter initialization
     def __init__(self):
         self.polarity = 1
@@ -19,11 +18,9 @@ class DecisionStump:
             predictions[X_column < self.threshold] = -1
         else:
             predictions[X_column > self.threshold] = -1
-
         return predictions
 
 class Adaboost_Classifier():
-
     # parameter initialization 
     def __init__(self, n_clf=5):
         self.n_clf = n_clf
@@ -88,7 +85,6 @@ class Adaboost_Classifier():
         clf_preds = [clf.alpha * clf.predict(X) for clf in self.clfs]
         y_pred = np.sum(clf_preds, axis=0)
         y_pred = np.sign(y_pred)
-
         return y_pred
     
 # Source: adaboost code of patrickloeber. No Adaptations

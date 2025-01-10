@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt 
 
 class KMeans_Clustering():
-
     # parameter initialization 
     def __init__(self, k=5, num_iters=100, plot_steps=False, tol=1e-4, random_state=None, distance_measurement='euclidean'): 
         self.k         = k
@@ -14,12 +13,9 @@ class KMeans_Clustering():
         # validate distance measurement input
         if distance_measurement not in ['euclidean', 'manhattan', 'cosine']:
             raise ValueError("Invalid distance measurement. Choose from 'euclidean', 'manhattan', or 'cosine'.")
-
         if random_state: 
             np.random.seed(random_state)
-
         self.clusters  = [[] for _ in range(self.k)]
-
         self.centroids = []
 
     # formula of euclidean distance
@@ -35,23 +31,20 @@ class KMeans_Clustering():
         dot_output = np.sum(x1 * x2)
         norm_x1    = np.sqrt(np.sum(x1 ** 2))
         norm_x2    = np.sqrt(np.sum(x2 ** 2))
-
         return 1 - (dot_output / (norm_x1 * norm_x2))
 
     # prediction process
     def predict(self, X):
         self.X = X
         self.n_samples, self.n_features = X.shape
-        
+
         # choosing sample randomly and create centroid
         random_sample_idxs = np.random.choice(self.n_samples, self.k, replace=False)
         self.centroids     = [self.X[idx] for idx in random_sample_idxs]
 
         for i in range(self.num_iters):
-
             # assign samples to the nearest centroids to form clusters
             self.clusters = self.create_clusters(self.centroids)
-
             if self.plot_steps:
                 print('Visualization after clusters are formed:')
                 print()
@@ -71,7 +64,6 @@ class KMeans_Clustering():
                 print('Visualization after centroids have been updated:')
                 print()
                 self.plot()
-
         return self.get_label(self.clusters)
 
     # create clusters by assigning samples to the nearest centroid
@@ -80,7 +72,6 @@ class KMeans_Clustering():
         for idx, sample in enumerate(self.X): 
             centroid_idx = self.closest_centroid(sample, centroids)
             clusters[centroid_idx].append(idx)
-
         return clusters
 
     # determine closest centroid to a sample
@@ -92,7 +83,6 @@ class KMeans_Clustering():
         elif self.distance_measurement == 'cosine':
             distances   = [self.cosine_distance(sample, point) for point in centroids]
         closest_centroid_idx = np.argmin(distances) 
-
         return closest_centroid_idx
 
     # update centroid by calculating the mean of the points in each cluster
@@ -103,7 +93,6 @@ class KMeans_Clustering():
                 centroids[idx] = self.centroids[idx]
             else: 
                 centroids[idx] = np.mean(self.X[cluster], axis = 0)
-
         return centroids 
     
     # check if centroids have converged
@@ -116,7 +105,6 @@ class KMeans_Clustering():
                 total_distance += self.manhattan_distance(old_centroids[i], centroids[i])
             elif self.distance_measurement == 'cosine':
                 total_distance += self.cosine_distance(old_centroids[i], centroids[i])
-
         return total_distance < self.tol
     
     # assign labels to each data point
@@ -125,7 +113,6 @@ class KMeans_Clustering():
         for cluster_idx, cluster in enumerate(clusters): 
             for idx in cluster: 
                 self.labels[idx] = cluster_idx
-                 
         return self.labels       
     
     # plot the clustering result. But it is only for 2D data! 
@@ -138,10 +125,8 @@ class KMeans_Clustering():
         for i, index in enumerate(self.clusters):
             point = self.X[index].T
             ax.scatter(*point)
-
         for point in self.centroids:
             ax.scatter(*point, marker="x", color="black", linewidth=2)
-
         plt.show()
 
 # Modified from Patric Loeber's code. 
